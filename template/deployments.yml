@@ -1,0 +1,33 @@
+apiVersion: ${apiVersion}
+kind: ${kind}
+metadata:
+  name: ${metadata.name}
+  labels:
+    ${metadata.labels}
+specs:
+  replicas: ${specs.replicas}
+  selector:
+    matchLabels:
+      ${specs.selector.matchLabels}
+  template:
+    metadata:
+      labels:
+        ${specs.template.metadata.labels}
+    spec:
+      serviceAccountName: ${specs.template.spec.serviceAccountName}
+      containers:
+        - name: ${specs.template.spec.containers.name}
+          image: ${specs.template.spec.containers.image.repository}
+          imagePullPolicy: ${specs.template.spec.containers.imagePullPolicy}
+          ports:
+            - name: ${specs.template.spec.containers.ports.name}
+              containerPort: ${specs.template.spec.containers.ports.containerPort}
+              protocol: ${specs.template.spec.containers.ports.protocol}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http

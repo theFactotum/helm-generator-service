@@ -1,0 +1,10 @@
+version: '2'
+services:
+  xml-upload-service:
+    container_name: helm-generator-service
+    build:
+      context: docker-helm-generator-service
+      dockerfile: Dockerfile
+    image: helm-generator-service-0.0.1:latest
+    ports:
+      - 8080:8080
